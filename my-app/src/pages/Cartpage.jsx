@@ -8,7 +8,7 @@ const Cartpage = () => {
     useEffect(() => {
       const fetchItems = async()=>{
         try{
-       const response = await axios.get("http://localhost:3000/api/get");
+       const response = await axios.get(`https://my-flipkart.onrender.com/api/get`);
         console.log("Fetched data:", response.data); 
         const data = response.data;
         setCartItem(Array.isArray(data) ? data : []);
@@ -22,7 +22,7 @@ const Cartpage = () => {
     }, []);  
 const handledelete =async (id) => {
   try {
-    await axios.delete(`http://localhost:3000/api/delete/${id}`);
+    await axios.delete(`https://my-flipkart.onrender.com/api/delete/${id}`);
     setCartItem(cartItem.filter(item => item._id !== id));
     console.log("Item deleted successfully");
   } catch (error) {
