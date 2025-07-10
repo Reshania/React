@@ -34,7 +34,7 @@ const Beautypagecard = () => {
   ];
 const handleAddToCart = async (card) => {
   try {
-    await axios.post('http://localhost:3000/api/add', {
+    await axios.posthttps://my-flipkart.onrender.com/api/add', {
       title: card.name,
       description: card.name,
       image: card.image,
