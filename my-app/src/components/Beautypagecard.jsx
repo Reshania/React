@@ -32,7 +32,11 @@ const Beautypagecard = () => {
     { image: 'Sketcheyeliner.webp', name: 'Sketch Eyeliner', price: '₹50' },
     { image: 'Vaselinemoisture.webp', name: 'Vaselinr Mositure for smooth body', price: '₹400' }
   ];
+  
+  let isProcessing = false;
 const handleAddToCart = async (card) => {
+ if (isProcessing) return;
+  isProcessing = true;
   try {
     await axios.post('https://my-flipkart.onrender.com/api/add', {
       title: card.name,
@@ -44,6 +48,8 @@ const handleAddToCart = async (card) => {
   } catch (error) {
     console.error("Error adding to cart:", error);
     alert("Failed to add item.");
+  }finally {
+    isProcessing = false;
   }
 };
   return (
