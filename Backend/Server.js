@@ -5,13 +5,18 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 dotenv.config();
 const cardRoutes = require('./routes/CardRoutes');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, 
+  max: 5
+});
+app.use(limiter);
 app.get('/api', (req, res) => {
   res.send('Welcome to the Card API');
 });
