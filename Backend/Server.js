@@ -12,11 +12,7 @@ const cardRoutes = require('./routes/CardRoutes');
 const app = express();
 app.use(bodyParser.json());
 
-app.use(cors({
-  origin: 'https://my-flipkart-frontend.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, 
@@ -32,6 +28,11 @@ app.use(limiter);
 app.get('/api', (req, res) => {
   res.send('Welcome to the Card API');
 });
+app.use(cors({
+  origin: 'https://my-flipkart-frontend.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use('/api', cardRoutes);
 
 // Use the route
